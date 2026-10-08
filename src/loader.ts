@@ -1,23 +1,22 @@
 import path from 'path';
+import type { LoaderContext } from 'webpack';
 
 import { Operation, SerializableOperation } from './operations';
 
-const { validate } = require('schema-utils');
-
 const schema = {
-  type: 'object',
+  type: 'object' as const,
   properties: {
     operations: {
-      type: 'array',
+      type: 'array' as const,
       items: {
-        type: 'object'
+        type: 'object' as const
       }
     },
     moduleRequest: {
-      type: 'string'
+      type: 'string' as const
     },
     constants: {
-      type: 'object'
+      type: 'object' as const
     }
   },
   additionalProperties: false
@@ -29,21 +28,12 @@ interface LoaderOptions {
   constants: Record<string, string>;
 }
 
-interface modifyModuleSourceLoader {
-  getOptions?: () => LoaderOptions;
-}
-
 export default function modifyModuleSourceLoader(
-  this: modifyModuleSourceLoader,
+  this: LoaderContext<LoaderOptions>,
   source: string
 ): string {
-  const options: LoaderOptions = this.getOptions
-    ? this.getOptions()
-    : require('loader-utils-webpack-v4').getOptions(this);
-
-  validate(schema, options, {
-    name: 'ModifySourcePlugin webpack loader'
-  });
+  // webpack 5 validates the options against the schema itself.
+  const options = this.getOptions(schema);
 
   const cleanPath = options.moduleRequest.split('?')[0];
   const fileName = path.basename(cleanPath);

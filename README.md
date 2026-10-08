@@ -1,35 +1,32 @@
-[![npm version](https://img.shields.io/npm/v/modify-source-webpack-plugin.svg)](https://www.npmjs.com/package/modify-source-webpack-plugin)
-![npm version](https://img.shields.io/npm/dm/modify-source-webpack-plugin.svg)
-![npm version](https://img.shields.io/npm/dt/modify-source-webpack-plugin.svg)
-![npm version](https://img.shields.io/snyk/vulnerabilities/npm/modify-source-webpack-plugin.svg)
-![npm version](https://img.shields.io/librariesio/release/npm/modify-source-webpack-plugin.svg)
-[![npm version](https://img.shields.io/npm/l/modify-source-webpack-plugin.svg)](https://github.com/artembatura/modify-source-webpack-plugin)
-
-# [modify-source-webpack-plugin](https://www.npmjs.com/package/modify-source-webpack-plugin)
+# @unabandoned/modify-source-webpack-plugin
 
 Webpack plugin for modifying modules source.
+
+A maintained fork of
+[`modify-source-webpack-plugin`](https://github.com/artembatura/modify-source-webpack-plugin),
+which has had no release since 4.1.0 (2023). It is kept alive in the
+[`unabandoned`](https://github.com/unabandoned) org because projects of ours still
+patch bundled dependencies with it.
+
+The fork targets **webpack 5 only** and has **no runtime dependencies**: options are
+validated by webpack's own `validateSchema` and `this.getOptions(schema)`, which
+replace `schema-utils` and the `loader-utils@2` alias used for webpack 4. The API
+(`ModifySourcePlugin`, `ConcatOperation`, `ReplaceOperation`, constants) is
+unchanged.
 
 ## Compatibility
 
 | Webpack Version | Plugin version | Status                   |
 | --------------- | -------------- | ------------------------ |
-| ^5.0.0          | ^4.0.0         | <p align="center">✅</p> |
-| ^4.37.0         | ^4.0.0         | <p align="center">✅</p> |
-
-## [Migration guide](https://github.com/artembatura/modify-source-webpack-plugin/blob/master/CHANGELOG.md#migration-guide-3x-to-4x) from version 3
+| ^5.0.0          | ^5.0.0         | <p align="center">✅</p> |
+| ^4.37.0         | upstream 4.x   | not supported            |
 
 ## Installation
 
-### NPM
+Install it under the original name so existing `require` calls keep working:
 
 ```
-npm i -D modify-source-webpack-plugin
-```
-
-### Yarn
-
-```
-yarn add -D modify-source-webpack-plugin
+npm i -D modify-source-webpack-plugin@npm:@unabandoned/modify-source-webpack-plugin
 ```
 
 ## Import

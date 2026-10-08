@@ -1,18 +1,15 @@
 {
   "include": ["src"],
-  "exclude": ["node_modules", "build", "**/__tests__"],
   "compilerOptions": {
-    "allowJs": true,
     "rootDir": "src",
     "outDir": "build",
-    "moduleResolution": "node",
+    "module": "node20",
+    "target": "es2023",
+    "lib": ["es2023"],
+    "types": ["node"],
     "skipLibCheck": true,
-    "lib": ["ESNext"],
-    "module": "CommonJS",
     "strict": true,
-    "esModuleInterop": true,
     "declaration": true,
-    "declarationMap": false,
     "sourceMap": true
   }
 }
