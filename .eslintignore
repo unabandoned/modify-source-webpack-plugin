@@ -1,8 +1,0 @@
-build
-node_modules
-examples/*
-!examples/__tests__
-*.d.ts
-.pnp.js
-.pnp.cjs
-.pnp.loader.mjs

@@ -1,0 +1,29 @@
+schema: 1
+
+package: "@unabandoned/modify-source-webpack-plugin"
+
+upstream:
+  repo: artembatura/modify-source-webpack-plugin
+  reason: "no release since 4.1.0 (June 2023); still depends on loader-utils 2 through a loader-utils-webpack-v4 alias kept only for webpack 4"
+
+summary: >-
+  webpack plugin that rewrites the source of matching modules before their
+  loaders run, using serialisable replace and concat operations.
+
+why-forked: >-
+  CyberChef patches two bundled dependencies with it, and upstream went quiet
+  while carrying an aliased copy of loader-utils 2 for webpack 4 plus
+  schema-utils. webpack 5 validates options itself (validateSchema and
+  this.getOptions(schema)), so the fork drops webpack 4 support and has zero
+  runtime dependencies.
+
+used-by:
+  - consumer: TheTechNetwork/CyberChef
+    purpose: >-
+      patches modules at build time in webpack.config.js, passing jq-web a
+      locateFile so the bundled worker can find jq.wasm, and disabling Split.js's
+      gutter accommodation to fix its toSpare(0) bug
+
+status: active
+
+tags: [webpack, plugin, build-tooling, source-transform]

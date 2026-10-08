@@ -1,8 +1,7 @@
+import { validateSchema } from 'webpack';
 import type { Compiler, NormalModule } from 'webpack';
 
 import { AbstractOperation, Operation } from './operations';
-
-const { validate } = require('schema-utils');
 
 export interface Rule {
   test: RegExp | ((module: NormalModule) => boolean);
@@ -15,7 +14,7 @@ export type Options = {
   constants?: Record<string, string | number>;
 };
 
-const validationSchema = {
+const validationSchema: Parameters<typeof validateSchema>[0] = {
   type: 'object',
   additionalProperties: false,
   properties: {
@@ -50,7 +49,8 @@ const PLUGIN_NAME = 'ModifySourcePlugin';
 
 export class ModifySourcePlugin {
   constructor(protected readonly options: Options) {
-    validate(validationSchema, options, {
+    // webpack 5 ships schema-utils and exposes it as validateSchema.
+    validateSchema(validationSchema, options, {
       name: PLUGIN_NAME
     });
   }
@@ -99,13 +99,7 @@ export class ModifySourcePlugin {
               Operation.makeSerializable(op)
             );
 
-            let loader;
-
-            try {
-              loader = require.resolve('./loader.js');
-            } catch (e) {
-              loader = require.resolve('../build/loader.js');
-            }
+            const loader = require.resolve('./loader.js');
 
             (normalModule.loaders as NormalModuleLoader[]).push({
               loader,
@@ -128,18 +122,9 @@ export class ModifySourcePlugin {
         });
       };
 
-      const NormalModule = compiler.webpack?.NormalModule;
-      const isNormalModuleAvailable =
-        Boolean(NormalModule) && Boolean(NormalModule.getCompilationHooks);
-
-      if (isNormalModuleAvailable) {
-        NormalModule.getCompilationHooks(compilation).beforeLoaders.tap(
-          PLUGIN_NAME,
-          tapCallback
-        );
-      } else {
-        compilation.hooks.normalModuleLoader.tap(PLUGIN_NAME, tapCallback);
-      }
+      compiler.webpack.NormalModule.getCompilationHooks(
+        compilation
+      ).beforeLoaders.tap(PLUGIN_NAME, tapCallback);
     });
   }
 }

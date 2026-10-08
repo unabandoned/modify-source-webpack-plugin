@@ -1,5 +1,5 @@
 {
-  "name": "modify-source-webpack-plugin",
+  "name": "@unabandoned/modify-source-webpack-plugin",
   "version": "4.1.0",
   "description": "Webpack plugin for modifying modules source",
   "author": {
@@ -8,74 +8,39 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/artembatura/modify-source-webpack-plugin"
+    "url": "git+https://github.com/unabandoned/modify-source-webpack-plugin.git"
   },
-  "homepage": "https://github.com/artembatura/modify-source-webpack-plugin#readme",
+  "homepage": "https://github.com/unabandoned/modify-source-webpack-plugin#readme",
   "bugs": {
-    "url": "https://github.com/artembatura/modify-source-webpack-plugin/issues"
+    "url": "https://github.com/unabandoned/modify-source-webpack-plugin/issues"
   },
   "license": "MIT",
   "main": "build/index.js",
-  "typings": "build/index.d.ts",
+  "types": "build/index.d.ts",
   "files": [
     "build"
   ],
   "scripts": {
-    "build": "tsc -b .",
-    "clean-build": "rimraf build",
-    "prepublishOnly": "run-s clean-build build",
-    "lint-staged": "lint-staged",
-    "test": "jest",
-    "watch": "tsc -b . --watch"
+    "build": "tsc -p .",
+    "test": "node --test test/*.test.js",
+    "prepare": "git config core.hooksPath .githooks || true"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.20",
-    "@types/json-schema": "^7.0.6",
-    "@types/node": "^14.14.21",
-    "@types/rimraf": "^3.0.0",
-    "@types/webpack-v4": "npm:@types/webpack@5.28.0",
-    "@typescript-eslint/eslint-plugin": "^4.13.0",
-    "@typescript-eslint/parser": "^4.13.0",
-    "css-loader": "^5.0.1",
-    "eslint": "^7.18.0",
-    "eslint-config-prettier": "^7.1.0",
-    "eslint-formatter-pretty": "^4.0.0",
-    "eslint-import-resolver-node": "^0.3.4",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-import-helpers": "^1.1.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "husky": "^4.3.8",
-    "jest": "^26.6.3",
-    "lint-staged": "^10.5.3",
-    "modern-normalize": "^1.0.0",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.2.1",
-    "rimraf": "^3.0.2",
-    "style-loader": "^2.0.0",
-    "ts-jest": "^26.4.4",
-    "typescript": "^4.1.3",
-    "webpack": "^5.15.0",
-    "webpack-v4": "npm:webpack@webpack-4"
-  },
-  "dependencies": {
-    "loader-utils-webpack-v4": "npm:loader-utils@^2.0.4",
-    "schema-utils": "^4.0.0"
+    "@commitlint/cli": "21.2.3",
+    "@commitlint/config-conventional": "21.2.3",
+    "@types/node": "26.6.4",
+    "typescript": "7.0.2",
+    "webpack": "5.111.1"
   },
   "peerDependencies": {
-    "webpack": "^4.37.0 || ^5.0.0"
+    "webpack": "^5.0.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint-staged"
-    }
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
-  "lint-staged": {
-    "*.{js,ts,jsx,tsx,md,json}": [
-      "prettier --write"
-    ],
-    "*.{js,ts,jsx,tsx}": [
-      "eslint --format=pretty --fix"
-    ]
+  "engines": {
+    "node": ">=22.12"
   },
   "keywords": [
     "webpack",
@@ -96,6 +61,5 @@
     "rebuildModule",
     "addDependency",
     "buildModule"
-  ],
-  "packageManager": "yarn@3.2.4"
+  ]
 }
