@@ -4,6 +4,17 @@
 
 Fixed bug when plugin doesn't attach loader to module and file is not being modified again in watch mode after triggered re-compilation.
 
+## [5.0.0](https://github.com/unabandoned/modify-source-webpack-plugin/compare/modify-source-webpack-plugin-v4.1.0...modify-source-webpack-plugin-v5.0.0) (2026-10-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* webpack 4 is no longer supported (peer webpack ^5.0.0), and Node.js >= 22.12 is required.
+
+### Features
+
+* onboard as @unabandoned/modify-source-webpack-plugin for webpack 5 ([#1](https://github.com/unabandoned/modify-source-webpack-plugin/issues/1)) ([133efc2](https://github.com/unabandoned/modify-source-webpack-plugin/commit/133efc2bedc205556823b74f2a5c0a6b10589183))
+
 ## 4.0.0 (2023-02-11)
 
 The main step forward in this release was rejecting a bad approach with global variable which was used to access modify functions from webpack loader.
