@@ -30,7 +30,7 @@
     "@commitlint/config-conventional": "21.2.3",
     "@types/node": "26.6.5",
     "typescript": "7.0.2",
-    "webpack": "5.111.1"
+    "webpack": "5.112.0"
   },
   "peerDependencies": {
     "webpack": "^5.0.0"
