@@ -26,8 +26,8 @@
     "prepare": "git config core.hooksPath .githooks || true"
   },
   "devDependencies": {
-    "@commitlint/cli": "21.2.3",
-    "@commitlint/config-conventional": "21.2.3",
+    "@commitlint/cli": "21.2.4",
+    "@commitlint/config-conventional": "21.2.4",
     "@types/node": "26.6.5",
     "typescript": "7.0.2",
     "webpack": "5.112.0"
